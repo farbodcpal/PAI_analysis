@@ -1,0 +1,39 @@
+---
+title: "PAI Weekly Analysis"
+output: html_document
+---
+
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+
+<div class="row" style="padding-top: 30px;">
+<div class="col-sm-6">
+
+# **Introduction**
+
+I will update the PAI analysis every week on this GitHub webpage.
+
+
+
+## Notes
+
+1. The PAI analysis for every week since 08/01/2022 is available on this webpage.
+
+2. The purple number on top of the dashed purple line in every plot indicates the percentage change in total PAI since the week before.
+
+
+</div>
+<div class="col-sm-6">
+
+
+![](images/CPAL_Logo.png)
+</a>
+</div>
