@@ -24,10 +24,10 @@ getDoParWorkers()
 ```
 
 ```{r,  include = FALSE}
-weekly_PAI <- read.csv("data/weeklyPAI_until_10.10.csv")
-weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-10/11")
-total <- weekly_PAI %>% dplyr::filter(week == "08/01-10/11")
-total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-10/03")
+weekly_PAI <- read.csv("data/weeklyPAI_until_10.17.csv")
+weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-10/19" & week != "08/01-10/11")
+total <- weekly_PAI %>% dplyr::filter(week == "08/01-10/19")
+total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-10/11")
 ```
 
 
@@ -57,7 +57,7 @@ The weekly PAI data is available at [https://drive.google.com/file/d/1zBGRqy2e4D
 
 Below, the PAI of each division is visualized over time since 08/01/2022
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE, fig.height=10, fig.width=15}
+```{r, echo = FALSE, message=FALSE, warning=FALSE, fig.height=7, fig.width=10}
 ggplot(weekly, aes(x=week, group = 1)) + 
   geom_line(aes(y = HR_PAI, color = "High Risk PAI")) + 
   geom_line(aes(y = Catchment_PAI, color="Catchment PAI"), linetype="twodash") +
