@@ -1,0 +1,91 @@
+---
+title: ""
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+```{r include = FALSE}
+library(tidyverse)
+library(doParallel)
+library(R.utils)
+options(digits = 7)
+registerDoParallel()
+getDoParWorkers()
+```
+
+```{r,  include = FALSE}
+weekly_PAI <- read.csv("data/weeklyPAI_until_10.17.csv")
+weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-10/19" & week != "08/01-10/11")
+total <- weekly_PAI %>% dplyr::filter(week == "08/01-10/19")
+total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-10/11")
+```
+
+
+```{r include = FALSE}
+pai_perc <- function(division){
+  totalPAI <- total$HR_PAI[total$Division == division]
+  total_minusone_PAI <- total_minus_one_week$HR_PAI[total$Division == division]
+  round((totalPAI - total_minusone_PAI)/total_minusone_PAI*100,1) }
+
+y_loc <- function(division){ total$HR_PAI[total$Division == division] }
+
+data_text <- data.frame(label = c(paste(pai_perc("Central"), "%"), paste(pai_perc("North Central"), "%"), paste(pai_perc("North East"), "%"),
+                                  paste(pai_perc("North West"), "%"), paste(pai_perc("South Central"), "%"), paste(pai_perc("South East"), "%"),
+                                  paste(pai_perc("South West"), "%")),  # Create data for text
+                        Division = c("Central", "North Central", "North East", "North West", "South Central", "South East", "South West"),
+                        x = c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5),
+                        y = c(y_loc("Central")+2, y_loc("North Central")+2, y_loc("North East")+2,
+                              y_loc("North West")+2, y_loc("South Central")+2, y_loc("South East")+2,
+                              y_loc("South West")+2))
+```
+
+# Data
+
+The weekly PAI data is available at [https://drive.google.com/file/d/1zBGRqy2e4DLiy_fYu645l1ECyETOExLP/view?usp=sharing](https://drive.google.com/file/d/1zBGRqy2e4DLiy_fYu645l1ECyETOExLP/view?usp=sharing)
+
+# Predictive Accuracy Index 
+
+Below, the PAI of each division is visualized over time since 08/01/2022
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE, fig.height=7, fig.width=10}
+ggplot(weekly, aes(x=week, group = 1)) + 
+  geom_line(aes(y = HR_PAI, color = "High Risk PAI")) + 
+  geom_line(aes(y = Catchment_PAI, color="Catchment PAI"), linetype="twodash") +
+    facet_wrap(~Division) + theme(axis.text.x  = element_blank(), axis.ticks.x  = element_blank(), axis.title.x   = element_blank()) +
+  ylab("PAI") + ggtitle("High Risk PAI versus Catchment PAI")  +
+  
+  geom_hline(data = data.frame(yint=total$HR_PAI[total$Division == "Central"],Division="Central"), 
+             aes(yintercept = yint), linetype = "dotted", color = "purple", size=1) +
+  
+  geom_hline(data = data.frame(yint=total$HR_PAI[total$Division == "North Central"],Division="North Central"), 
+             aes(yintercept = yint), linetype = "dotted", color = "purple", size=1) +
+  
+  geom_hline(data = data.frame(yint=total$HR_PAI[total$Division == "North East"],Division="North East"), 
+             aes(yintercept = yint), linetype = "dotted", color = "purple", size=1) +
+  
+  geom_hline(data = data.frame(yint=total$HR_PAI[total$Division == "North West"],Division="North West"), 
+             aes(yintercept = yint), linetype = "dotted", color = "purple", size=1) +
+  
+  geom_hline(data = data.frame(yint=total$HR_PAI[total$Division == "South Central"],Division="South Central"), 
+             aes(yintercept = yint), linetype = "dotted", color = "purple", size=1) +
+  
+  geom_hline(data = data.frame(yint=total$HR_PAI[total$Division == "South East"],Division="South East"), 
+             aes(yintercept = yint), linetype = "dotted", color = "purple", size=1) +
+  
+  geom_hline(data = data.frame(yint=total$HR_PAI[total$Division == "South West"],Division="South West"), 
+             aes(yintercept = yint), linetype = "dotted", color = "purple", size=1) + 
+  
+  geom_text(data = data_text, mapping = aes(x = x, y = y, label = label), size = 4, color = "purple")
+  
+
+```
