@@ -1,4 +1,0 @@
-"0","weekly_PAI <- read.csv(""data/weeklyPAI_until_10.17.csv"")"
-"0","weekly <- weekly_PAI %>% dplyr::filter(week != ""08/01-10/19"" & week != ""08/01-10/11"")"
-"0","total <- weekly_PAI %>% dplyr::filter(week == ""08/01-10/19"")"
-"0","total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == ""08/01-10/11"")"
