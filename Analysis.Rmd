@@ -23,11 +23,16 @@ registerDoParallel()
 getDoParWorkers()
 ```
 
+```{r}
+weekly_PAI
+```
+
+
 ```{r,  include = FALSE}
-weekly_PAI <- read.csv("PAI data/weeklyPAI_until_10.31.csv")
-weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-10/27" & week != "08/01-11/04")
-total <- weekly_PAI %>% dplyr::filter(week == "08/01-11/04")
-total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-10/27")
+weekly_PAI <- read.csv("PAI data/weeklyPAI_until_11.07.csv")
+weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-11/04" & week != "08/01-11/12")
+total <- weekly_PAI %>% dplyr::filter(week == "08/01-11/12")
+total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-11/04")
 ```
 
 
