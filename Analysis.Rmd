@@ -24,10 +24,10 @@ getDoParWorkers()
 ```
 
 ```{r,  include = FALSE}
-weekly_PAI <- read.csv("PAI data/weeklyPAI_until_11.21.csv")
-weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-11/20" & week != "08/01-11/28")
-total <- weekly_PAI %>% dplyr::filter(week == "08/01-11/28")
-total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-11/20")
+weekly_PAI <- read.csv("PAI data/weeklyPAI_until_11.28.csv")
+weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-11/28" & week != "08/01-12/06")
+total <- weekly_PAI %>% dplyr::filter(week == "08/01-12/06")
+total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-11/28")
 ```
 
 
@@ -43,7 +43,7 @@ data_text <- data.frame(label = c(paste(pai_perc("Central"), "%"), paste(pai_per
                                   paste(pai_perc("North West"), "%"), paste(pai_perc("South Central"), "%"), paste(pai_perc("South East"), "%"),
                                   paste(pai_perc("South West"), "%")),  # Create data for text
                         Division = c("Central", "North Central", "North East", "North West", "South Central", "South East", "South West"),
-                        x = c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5),
+                        x = c(2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5),
                         y = c(y_loc("Central")+2, y_loc("North Central")+2, y_loc("North East")+2,
                               y_loc("North West")+2, y_loc("South Central")+2, y_loc("South East")+2,
                               y_loc("South West")+2))
