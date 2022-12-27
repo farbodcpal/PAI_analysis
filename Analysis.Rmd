@@ -24,10 +24,10 @@ getDoParWorkers()
 ```
 
 ```{r,  include = FALSE}
-weekly_PAI <- read.csv("PAI data/weeklyPAI_until_12.19.csv")
-weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-12/18" & week != "08/01-12/11")
-total <- weekly_PAI %>% dplyr::filter(week == "08/01-12/18")
-total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-12/11")
+weekly_PAI <- read.csv("PAI data/weeklyPAI_until_12.26.csv")
+weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-12/18" & week != "08/01-12/25")
+total <- weekly_PAI %>% dplyr::filter(week == "08/01-12/25")
+total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-12/18")
 ```
 
 
