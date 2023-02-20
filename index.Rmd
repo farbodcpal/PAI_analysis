@@ -1,6 +1,9 @@
 ---
-title: "PAI Weekly Analysis"
-output: html_document
+title: 'Home'
+output:
+  distill::distill_article:
+    toc:false:
+      theme: theme.css
 ---
 
 <style type="text/css">

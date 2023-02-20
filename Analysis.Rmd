@@ -1,14 +1,11 @@
 ---
-title: ""
+title: 'Analysis'
 output:
-  html_document:
-    toc: true
-    toc_float: true
-    collapsed: false
-    number_sections: false
-    toc_depth: 1
-    #code_folding: hide
+  distill::distill_article:
+    toc:false:
+      theme: theme.css
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
@@ -24,11 +21,12 @@ getDoParWorkers()
 ```
 
 ```{r,  include = FALSE}
-weekly_PAI <- read.csv("PAI data/weeklyPAI_until_2023.02.06.csv")
-weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-01/29" & week != "08/01-02/05")
-total <- weekly_PAI %>% dplyr::filter(week == "08/01-02/05")
-total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-01/29")
+weekly_PAI <- read.csv("PAI data/weeklyPAI_until_2023.02.20.csv")
+weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-02/12" & week != "08/01-02/19")
+total <- weekly_PAI %>% dplyr::filter(week == "08/01-02/19")
+total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-02/12")
 ```
+
 
 
 ```{r include = FALSE}
