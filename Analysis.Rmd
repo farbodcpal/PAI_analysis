@@ -21,10 +21,10 @@ getDoParWorkers()
 ```
 
 ```{r,  include = FALSE}
-weekly_PAI <- read.csv("PAI data/weeklyPAI_until_2023_02.27.csv")
-weekly <- weekly_PAI %>% dplyr::filter(week != "08/01-02/26" & week != "08/01-02/19")
-total <- weekly_PAI %>% dplyr::filter(week == "08/01-02/26")
-total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "08/01-02/19")
+weekly_PAI <- read.csv("PAI data/weeklyPAI_until_2023.03.13.csv")
+weekly <- weekly_PAI %>% dplyr::filter(week != "This-week" & week != "Last-week")
+total <- weekly_PAI %>% dplyr::filter(week == "This-week")
+total_minus_one_week <- weekly_PAI %>% dplyr::filter(week == "Last-week")
 ```
 
 
